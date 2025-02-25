@@ -617,45 +617,45 @@ def main():
                     
                     st.experimental_rerun()
         
-elif action == "Upgrade Institution":
-    st.write("##### Available Institutions")
-    
-    # Use institution keys directly from the dictionary
-    inst_options = list(game.institutions.keys())
-    
-    # Format function to display institutions with icons and costs
-    def format_institution(inst_key):
-        data = game.institutions[inst_key]
-        cost = data['cost'] * data['level']
-        return f"{data['icon']} {inst_key} (Cost: {cost})"
-    
-    # Use the direct key selection with a formatter
-    selected_inst = st.selectbox("Select institution:", inst_options, format_func=format_institution)
-    
-    if selected_inst:
-        # Now we can safely access the institution data using the selected key
-        data = game.institutions[selected_inst]
-        current_level = data['level']
-        cost = data['cost'] * current_level
-        
-        st.write(f"**Current Level**: {current_level}")
-        st.write(f"**Upgrade cost**: {cost}")
-        st.write(f"**Description**: {data['description']}")
-        
-        if game.research_points < cost:
-            st.error(f"You don't have enough research points for this upgrade")
-            can_upgrade = False
-        else:
-            can_upgrade = True
-        
-        if st.button("Upgrade", disabled=not can_upgrade):
-            success, message = game.invest_in_institution(selected_inst)
-            st.session_state.message = message
+        elif action == "Upgrade Institution":
+            st.write("##### Available Institutions")
             
-            if success:
-                st.session_state.actions_taken += 1
+            # Use institution keys directly from the dictionary
+            inst_options = list(game.institutions.keys())
             
-            st.rerun()
+            # Format function to display institutions with icons and costs
+            def format_institution(inst_key):
+                data = game.institutions[inst_key]
+                cost = data['cost'] * data['level']
+                return f"{data['icon']} {inst_key} (Cost: {cost})"
+            
+            # Use the direct key selection with a formatter
+            selected_inst = st.selectbox("Select institution:", inst_options, format_func=format_institution)
+            
+            if selected_inst:
+                # Now we can safely access the institution data using the selected key
+                data = game.institutions[selected_inst]
+                current_level = data['level']
+                cost = data['cost'] * current_level
+                
+                st.write(f"**Current Level**: {current_level}")
+                st.write(f"**Upgrade cost**: {cost}")
+                st.write(f"**Description**: {data['description']}")
+                
+                if game.research_points < cost:
+                    st.error(f"You don't have enough research points for this upgrade")
+                    can_upgrade = False
+                else:
+                    can_upgrade = True
+                
+                if st.button("Upgrade", disabled=not can_upgrade):
+                    success, message = game.invest_in_institution(selected_inst)
+                    st.session_state.message = message
+                    
+                    if success:
+                        st.session_state.actions_taken += 1
+                    
+                    st.rerun()
         
         elif action == "View System Analysis":
             st.session_state.show_analysis = True
