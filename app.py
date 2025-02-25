@@ -655,7 +655,7 @@ def main():
                     if success:
                         st.session_state.actions_taken += 1
                     
-                    st.experimental_rerun()
+                    st.rerun()
         
         elif action == "View System Analysis":
             st.session_state.show_analysis = True
