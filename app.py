@@ -518,7 +518,7 @@ def main():
         
         # System status
         if balance < 0:
-            deficit_percent = abs(balance) / capacity * 100 if current_capacity > 0 else 100
+            deficit_percent = abs(balance) / current_capacity * 100 if current_capacity > 0 else 100
             st.error(f"⚠️ WARNING: Complexity exceeds capacity by {deficit_percent:.1f}%")
             st.warning("Crisis risk is HIGH. Consider investing in social institutions.")
         elif balance < current_complexity * 0.1:
