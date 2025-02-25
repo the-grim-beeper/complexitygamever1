@@ -617,8 +617,6 @@ def main():
                     
                     st.experimental_rerun()
         
-        # Replace the "Upgrade Institution" section in the main() function with this code:
-
 elif action == "Upgrade Institution":
     st.write("##### Available Institutions")
     
