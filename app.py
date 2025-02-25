@@ -677,7 +677,7 @@ def main():
                     if game_status != "ONGOING":
                         st.session_state.game_over = True
                 
-                st.experimental_rerun()
+                st.rerun()
     
     # Show analysis if requested
     if st.session_state.show_analysis:
