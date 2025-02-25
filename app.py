@@ -615,7 +615,7 @@ def main():
                     if success:
                         st.session_state.actions_taken += 1
                     
-                    st.experimental_rerun()
+                    st.rerun()
         
         elif action == "Upgrade Institution":
             st.write("##### Available Institutions")
